@@ -1,0 +1,165 @@
+﻿
+@model IEnumerable<TropicalServerApp.Models.Order>
+
+@{
+    ViewBag.Title = "Orders";
+}
+
+@Styles.Render("~/Orders/css")
+@Scripts.Render("~/bundles/modernizr")
+
+<div class="page">
+    <div id="CriteriaBar">
+        @using (Html.BeginForm("Orders", "Orders", FormMethod.Get, new { id = "criteriaForm" }))
+
+        {
+            <div class="Criteria">
+                <label class="label">
+                    Order Date:
+                </label>
+                @Html.DropDownList("OrderDateSelected",
+                    new[] {
+                        new SelectListItem() { Text="Today", Value = "Today" },
+                        new SelectListItem() { Text="Last 7 Days", Value = "Last 7 Days" },
+                        new SelectListItem() { Text="Last 1 Month", Value = "Last 1 Month" },
+                        new SelectListItem() { Text="Last 6 Months", Value = "Last 6 Months" }
+                    }, new { onchange = "form.submit();" })
+
+            </div>
+
+            <div class="Criteria">
+
+                <label class="label">
+                    Customer ID:
+                </label>
+                <input class="Input" id="searchCustID" name="searchCustID" type="text" />
+            </div>
+
+            <div class="Criteria">
+
+                <label class="label">
+                    Customer Name:
+                </label>
+                <input class="Input" id="searchCustName" name="searchCustName" type="text" />
+            </div>
+
+            <div class="Criteria">
+                <label class="label">
+                    Sales Manager:
+                </label>
+                @Html.DropDownList("SalesManagerSelected",
+                    new[] {
+                        new SelectListItem() { Text="", Value = "" },
+                        new SelectListItem() { Text="Dulce Ortiz", Value = "Dulce Ortiz" },
+                        new SelectListItem() { Text="Luis Jimmenez", Value = "Luis Jimmenez" },
+                        new SelectListItem() { Text="Fernando Monzalvez", Value = "Fernando Monzalvez" },
+                        new SelectListItem() { Text="Benjamin Parra", Value = "Benjamin Parra" },
+                        new SelectListItem() { Text = "Ruben Rodriguez", Value = "Ruben Rodriguez" }
+                    }, new { onchange = "form.submit();" })
+
+            </div>
+        }
+
+    </div>
+    <div id="grid">
+        <table style="width:100%;" class="gvOrders table" id="OrdersTable">
+            <tr class="Row">
+                <th>Tracking #</th>
+                <th>Order Date</th>
+                <th>Order ID</th>
+                <th>Customer ID</th>
+                <th>Customer Name</th>
+                <th>Address</th>
+                <th>Route #</th>
+                <th>Available Actions</th>
+            </tr>
+
+            @if (Model.Count() == 0)
+            {
+                <tr>
+                    No Records Found
+                </tr>
+            }
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td> @Html.DisplayFor(modelItem => item.OrderTrackingNo) </td>
+                    <td> @Html.DisplayFor(modelItem => item.OrderDate) </td>
+                    <td> @Html.DisplayFor(modelItem => item.OrderID) </td>
+                    <td> @Html.DisplayFor(modelItem => item.CustID) </td>
+                    <td> @Html.DisplayFor(modelItem => item.CustName) </td>
+                    <td> @Html.DisplayFor(modelItem => item.Address) </td>
+                    <td> @Html.DisplayFor(modelItem => item.CustRouteNo) </td>
+                    <td class="actionLink">
+                        <a href="@Url.Action("Details", "Orders", new { id = item.OrderID })">View</a>
+                        <a href="@Url.Action("Edit", "Orders", new { id = item.OrderID })">Edit</a>
+                        <a href="@Url.Action("Delete", "Orders", new { id = item.OrderID})">Delete</a>
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+    @{
+        if (TempData["msg"] != null)
+        {
+            <script>alert('@TempData["msg"]')</script>
+        }
+    }
+
+</div>
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script>
+    $(() => {
+        getOrders();
+
+        $("#searchCustName").on('keyup', function () {
+            console.log($("#searchCustName").val());
+            getOrders();
+        });
+
+        $("#searchCustID").on('keyup', function () {
+            $(this).css("backgroundcolor", "blue");
+            console.log($("#searchCustID").val());
+            getOrdersbyID();
+        });
+
+
+    });
+   function getOrders() {
+       $.ajax({
+           url: '@Url.Action("SearchByCustName", "Orders")',
+           dataType: 'html',
+           method: 'GET',
+           data: {
+               OrderDateSelected: $("#OrderDateSelected").val(),
+               searchCustName: $("#searchCustName").val()
+           },
+           success: function (res) {
+               $("#grid").html('').html(res);
+           },
+           error: function (err) {
+               console.log(err);
+           }
+       });
+    }
+
+    function getOrdersbyID() {
+        $.ajax({
+            url: '@Url.Action("SearchByCustID", "Orders")',
+            dataType: 'html',
+            method: 'GET',
+            data: {
+                OrderDateSelected: $("#OrderDateSelected").val(),
+                searchCustID: $("#searchCustID").val()
+            },
+            success: function (res) {
+                $("#grid").html('').html(res);
+            },
+            error: function (err) {
+                console.log(err);
+            }
+        });
+    }
+
+</script>

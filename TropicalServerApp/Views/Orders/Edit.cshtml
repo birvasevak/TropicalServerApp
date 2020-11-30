@@ -1,0 +1,56 @@
+﻿
+@model IEnumerable<TropicalServerApp.Models.Order>
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Edit</title>
+    @Styles.Render("~/Orders/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <div class="page">
+        <div class="heading">
+            <h1>Edit Order</h1>
+            <div class="gobackBtn">
+                <button id="goBack"><a href="@Url.Action("Orders", "Orders")"> Back </a></button>
+            </div>
+        </div>
+        @foreach (var item in Model)
+        {
+    <form id="orderDetailsForm" class="field" method="post" action="@Url.Action("Edit", "Orders")">
+
+        <label for="">Order ID: </label>
+        <input type="text" name="editOrderID" value="@item.OrderID" />
+
+        <label for="">Order Tracking No:</label>
+        <input type="text" name="editOrderTrackingNo" value="@item.OrderTrackingNo" />
+
+        <label for="">Customer No:</label>
+        <input type="text" name="editCustNo" value="@item.CustNo" />
+
+        <label for="">Customer ID:</label>
+        <input type="number" name="editCustID" value="@item.CustID" />
+
+        <label for="">Customer Name:</label>
+        <input type="text" name="editCustName" value="@item.CustName" />
+
+        <label for="">Address:</label>
+        <input type="text" name="editAddress" value="@item.Address" />
+
+        <label for="">Route No:</label>
+        <input type="text" name="editCustRouteNo" value="@item.CustRouteNo" />
+
+        <button id="SaveRecord" type="submit" value="Save" >Save</button>
+    </form>
+        }
+    </div>
+    
+</body>
+</html>

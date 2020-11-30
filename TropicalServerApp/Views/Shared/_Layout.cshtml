@@ -1,0 +1,56 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - TropicalServer</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body >
+
+          
+
+    <div class="container">
+       
+        <div class="main">
+
+            <div class="imageDisplay">
+                <img height="100" src="@Url.Content("~/Images/Header.jpg")" />
+                
+                    <nav style="background-color: #FBB917; border: none; margin-bottom: 0px; min-height: 32px" class="navbar navbar-default">
+                        <div   class="container-fluid">
+                            <div id="menuItem">
+                                <ul class="nav navbar-nav">
+
+                                    <li class="active">@Html.ActionLink("Orders", "Orders", "Product")</li>
+                                    <li >@Html.ActionLink("Product", "Product", "Product")</li>
+                                    <li ><a href="#">Routes</a></li>
+                                    <li><a href="#">Stop SEQN</a></li>
+                                    <li ><a href="#">Message Center</a></li>
+                                    <li ><a href="#">Reports</a></li>
+                                    <li ><a href="#">Routes</a></li>
+                                    <li><a href="#">Settings</a></li>
+                                    <li >@Html.ActionLink("Log Out", "Login", "Login")</li>
+                                </ul>
+                            </div>
+                           
+                        </div>
+                    </nav>
+                    
+
+            </div>
+            @RenderBody()
+            <hr />
+            <footer>
+                <p>&copy; @DateTime.Now.Year - My ASP.NET Application (Birva Sevak)</p>
+            </footer>
+        </div>
+
+    </div>     
+    
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

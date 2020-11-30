@@ -1,0 +1,99 @@
+﻿@model TropicalServerApp.Models.User
+
+@{
+    Layout = null;
+    ViewBag.Title = "Login";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - TropicalServer</title>
+    @Styles.Render("~/Login/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <div class="container">
+
+        <div class="main">
+
+
+            <div class="imageDisplay">
+                <img height="100" src="@Url.Content("~/Images/Header.jpg")" />
+
+            </div>
+            <div class="page">
+                <div id="BodyDetail">
+                    @*Login Box  Here *@
+                    <label id="Loginlbl">MOBILE CUSTOMER ORDER TRACKING</label>
+
+                    <div id="loginBox">
+                        <form method="post" action="@Url.Action("Validate", "Login")">
+                            <label id="useridlbl">Login ID:  </label><input name="LoginID" id="useridtextbox" type="text" />
+                            <label id="passwordlbl">Password: </label> <input name="Password" id="passwordtextbox" type="password" />
+                            <div id="login">
+                                <label for="rememberMyID" id="rememberIdlbl">
+                                    Remember my ID
+                                    @*@Html.CheckBoxFor(m => m.RememberMe)*@
+                                    <input id="rememberMyID" type="checkbox" name="rememberMyID" />
+                                </label>
+
+
+                                <input id="LoginBtn_1" type="submit" value="Login" />
+
+                            </div>
+                        </form>
+
+                        @if (TempData["ErrMsg"] != null)
+                        {
+                            <div id="errorBox">
+                                <span id="errorlbl">
+                                    @TempData["ErrMsg"].ToString()
+                                </span>
+                            </div>
+                        }
+
+                    </div>
+                    <div id="forgot">
+                        <a href="#" id="forgotUsername"
+                           onclick="myPopup('@Url.Action("ForgotUsername", "ForgotCredentials")', 'Forgot Username', 500, 50)">
+                            Forgot Username
+                        </a>
+
+                        <a href="#" id="forgotPassword" onclick="myPopup('@Url.Action("ForgotPassword", "ForgotCredentials")', 'Forgot Password', 500, 50)">Forgot Password</a>
+
+                    </div>
+                </div>
+
+            </div>
+            <hr />
+            <footer>
+                <p>&copy; @DateTime.Now.Year - My ASP.NET Application (Birva Sevak)</p>
+            </footer>
+        </div>
+
+    </div>
+
+
+
+
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    <script>
+    function newWindow() {
+
+        window.open("@(Url.Action("ForgotUsername", "ForgotCredentials"))", "_blank", "width=500, height=50");
+    }
+
+    function myPopup(myURL, title, myWidth, myHeight) {
+        var left = (screen.width - myWidth) / 2;
+        var top = (screen.height - myHeight) / 4;
+        var myWindow = window.open(myURL, title, 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width=' + myWidth + ', height=' + myHeight + ', top=' + top + ', left=' + left);
+    }
+
+    </script>
+</body>
+</html>

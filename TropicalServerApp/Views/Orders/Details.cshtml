@@ -1,0 +1,57 @@
+﻿
+
+@{
+    ViewBag.Title = "Details";
+
+}
+
+@model IEnumerable<TropicalServerApp.Models.Order>
+@Styles.Render("~/Orders/css")
+@Scripts.Render("~/bundles/modernizr")
+<html>
+<body>
+    <div class="page">
+        <div class="heading">
+            <h1>Order Details</h1>
+            <div class="gobackBtn">
+                <button id="goBack"><a href="@Url.Action("Orders", "Orders")"> Back </a></button>
+            </div>
+        </div>
+        @foreach (var item in Model)
+        {
+    <form id="orderDetailsForm" class="field">
+
+        <label for="">Order ID: </label>
+        <input type="text" name="" value="@item.OrderID" disabled />
+
+        <label for="">Order Tracking No:</label>
+        <input type="text" name="" value="@item.OrderTrackingNo" disabled />
+
+        <label for="">Customer No:</label>
+        <input type="text" name="" value="@item.CustNo" disabled />
+
+        <label for="">Customer Name:</label>
+        <input type="text" name="" value="@item.CustName" disabled />
+
+        <label for="">Address:</label>
+        <input type="text" name="" value="@item.Address" disabled />
+
+        <label for="">Route No:</label>
+        <input type="text" name="" value="@item.CustRouteNo" disabled />
+
+        <label for="">Customer ID:</label>
+        <input type="text" name="" value="@item.CustID" disabled />
+
+        <br />
+
+
+    </form>
+            <br />
+            <br />
+
+        }
+
+    </div>
+
+</body>
+</html>

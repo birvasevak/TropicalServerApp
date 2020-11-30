@@ -1,0 +1,161 @@
+﻿/* Orders
+----------------------------------------------------------*/
+
+#CriteriaBar 
+{
+    background-color:#2C4E81;
+    padding:9px;
+    margin-top:5px;
+    margin-bottom: 5px;
+}
+#CriteriaBar .Criteria
+{
+    text-align:center;
+    width:240px;
+    margin:0;
+    float:left;
+}
+#CriteriaBar .Criteria .label
+{
+    color:#FFFFFF;
+    font-size: 11pt;
+}
+#CriteriaBar .Criteria .Input
+{
+    width:100px;
+    line-height: normal;
+}
+
+#criteriaForm {
+    display: flex;
+    flex-flow: row wrap;
+}
+
+@media (max-width: 800px) {
+    #criteriaForm > div {
+        margin: 10px 0;
+    }
+
+    #criteriaForm {
+        flex-flow: row wrap;
+        align-items: stretch;
+    }
+}
+
+#grid 
+{
+    width:100%;
+    text-align:center;
+    height:550px;
+    overflow:auto;
+}
+.gvOrders 
+{
+    margin:3px auto;
+    width:99%;
+}
+.gvOrders th
+{
+    color:#FFFFFF;
+    background-color:#3B8FA7;
+    border:2px solid #FFFFFF;
+    border-bottom:5px solid #FFFFFF;
+}
+.gvOrders td
+{
+    border:2px solid #FFFFFF;
+    padding-left:10px;
+}
+.gvOrders .Row
+{
+    background-color:#FFFFFF;
+}
+.gvOrders .AltRow
+{
+    background-color:#CED9DF;
+}
+
+.gvOrders tr:nth-child(even) {
+    background: #CED9DF;
+}
+
+.gvOrders tr:nth-child(odd) {
+    background: #FFFFFF;
+}
+
+.actionLink a {
+    color: #337ab7;
+    margin: 3px;
+}
+
+.actionLink a:hover{
+    text-decoration: underline;
+}
+
+#orderDetailsForm {
+    width: 100%;
+    margin-left: 25px;
+}
+.field {
+    padding: 5px;
+    margin: 5px;
+}
+
+.field label {
+    display: inline-block;
+    float: left;
+    clear: left;
+    width: 250px;
+    text-align: right;
+}
+
+.field input {
+    display: inline-block;
+    float: left;
+    margin-left: 5px;
+    margin-bottom: 10px;
+    width: 250px;
+}
+
+#goBack {
+    background-color: #465c71;
+    border: 1px #4e667d solid;
+    color: #dde4ec;
+    display: block;
+    line-height: 1.35em;
+    padding: 4px 20px;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.gobackBtn {
+    display: inline-block;
+    float: left;
+    clear: left;
+    width: 250px;
+    text-align: right;
+    margin-top: 5px;
+}
+
+#goBack a{
+    color: white;
+    font-weight: bold;
+    font-size: 11pt;
+}
+
+.heading{
+    margin-left: 15px;
+}
+
+#SaveRecord {
+    background-color: #465c71;
+    border: 1px #4e667d solid;
+    color: #dde4ec;
+    line-height: 1.35em;
+    padding: 4px 20px;
+    text-decoration: none;
+    white-space: nowrap;
+    font-size: 11pt;
+    font-weight: bold;
+    margin-left: 200px;
+}

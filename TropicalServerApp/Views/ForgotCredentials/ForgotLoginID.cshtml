@@ -1,0 +1,35 @@
+﻿@model TropicalServerApp.Models.User
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ForgotCredentials</title>
+    @Styles.Render("~/Login/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <div id="emailBox">
+        <center>
+            <label id="emailIDlbl" for="emailIDlbl">
+                Enter your register Email ID:
+            </label>
+            <form method="post" action="@Url.Action("SendByEmail", "ForgotCredentials")">
+                <input name="Email" id="emailIDtextbox" type="text" />
+                <br />
+                <input id="getPasswordBtn" type="submit" value="Send" />
+                <br/>
+                <label id="lblMessage-success" runat="server">@ViewData["confirmation"]</label>
+                <label id="lblMessage-error" runat="server">@ViewData["emailError"]</label>
+            </form>
+        </center>
+    </div>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+</body>
+</html>
