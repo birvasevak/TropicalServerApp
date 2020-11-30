@@ -1,6 +1,9 @@
 # TropicalServerApp
 Asp.Net MVC application developed using 3-Tier Architecture with features like custom authentication and authorization. All table functionality such searching, sorting, pagination and all CRUD operations.
 
+
+[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=birvasevak&layout=compact)](https://github.com/anuraghazra/github-readme-stats)
+
 ### Options available in the orders table are as follows:
 
   * Order Date (Drop‐down list)
@@ -14,3 +17,6 @@ Asp.Net MVC application developed using 3-Tier Architecture with features like c
 
   * Customer Name
     * This would be an AJAX based. User would need to enter at least 3 characters for the function to execute & display results.
+    
+
+
